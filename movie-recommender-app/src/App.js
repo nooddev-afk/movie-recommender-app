@@ -32,7 +32,7 @@ export default function MovieRecommendationApp() {
 
       const tmdbRes = await axios.get(`https://api.themoviedb.org/3/discover/movie`, {
         params: {
-          api_key: '1d11d1a61d96bcbed284f937afed2b5a',
+          api_key: process.env.REACT_APP_TMDB_API_KEY,
           with_genres: genreId,
           sort_by: 'popularity.desc',
           language: 'en-US'
@@ -41,14 +41,13 @@ export default function MovieRecommendationApp() {
 
       const movies = tmdbRes.data.results.slice(0, 5);
 
-      // Fetch availability from Utelly API (mocked with fallback)
       const enrichedMovies = await Promise.all(movies.map(async movie => {
         try {
           const utellyRes = await axios.get(`https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup`, {
             params: { term: movie.title, country: 'us' },
             headers: {
               'x-rapidapi-host': 'utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com',
-              'x-rapidapi-key': '89f924df7bmsh8133cc401b05ef8p191a41jsn7ee6e65bd'
+              'x-rapidapi-key': process.env.REACT_APP_UTELLY_API_KEY
             }
           });
 
@@ -74,44 +73,48 @@ export default function MovieRecommendationApp() {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">What Should I Watch?</h1>
+    <div className="min-h-screen bg-black text-white font-sans px-4 py-6">
+      <h1 className="text-4xl font-extrabold text-red-600 mb-10 text-center">What Should I Watch?</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <select onChange={e => setSelectedGenre(e.target.value)} className="p-2 rounded">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-4xl mx-auto">
+        <select onChange={e => setSelectedGenre(e.target.value)} className="p-3 bg-zinc-900 text-white rounded border border-zinc-700">
           <option value="">Select Genre</option>
           {Object.keys(genreMap).map(g => <option key={g} value={g}>{g}</option>)}
         </select>
 
-        <select onChange={e => setSelectedMood(e.target.value)} className="p-2 rounded">
+        <select onChange={e => setSelectedMood(e.target.value)} className="p-3 bg-zinc-900 text-white rounded border border-zinc-700">
           <option value="">Select Mood</option>
           {moods.map(m => <option key={m} value={m}>{m}</option>)}
         </select>
 
-        <select onChange={e => setSelectedPlatform(e.target.value)} className="p-2 rounded">
+        <select onChange={e => setSelectedPlatform(e.target.value)} className="p-3 bg-zinc-900 text-white rounded border border-zinc-700">
           <option value="">Select Platform</option>
           {platforms.map(p => <option key={p} value={p}>{p}</option>)}
         </select>
       </div>
 
-      <button onClick={fetchRecommendations} className="bg-blue-600 text-white px-4 py-2 rounded">
-        {loading ? 'Loading...' : 'Get Recommendations'}
-      </button>
+      <div className="flex justify-center">
+        <button onClick={fetchRecommendations} className="bg-red-600 hover:bg-red-700 transition text-white px-6 py-3 text-lg font-semibold rounded shadow-md">
+          {loading ? 'Loading...' : 'Get Recommendations'}
+        </button>
+      </div>
 
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {results.map(movie => (
-          <div key={movie.id} className="border rounded-lg p-4 shadow">
+          <div key={movie.id} className="bg-zinc-900 border border-zinc-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
             {movie.poster_path && (
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
-                className="mb-4 w-full rounded"
+                className="w-full h-[400px] object-cover"
               />
             )}
-            <h2 className="text-xl font-semibold mb-2">{movie.title}</h2>
-            <p className="text-sm text-gray-600 mb-2">{movie.overview?.slice(0, 150)}...</p>
-            <p className="text-sm font-medium">Rating: {movie.vote_average}</p>
-            <p className="text-sm">Available on: {movie.platform}</p>
+            <div className="p-4">
+              <h2 className="text-xl font-bold mb-2 text-white">{movie.title}</h2>
+              <p className="text-sm text-zinc-400 mb-3">{movie.overview?.slice(0, 150)}...</p>
+              <p className="text-sm text-white font-semibold">⭐ Rating: {movie.vote_average}</p>
+              <p className="text-xs text-red-400 mt-1">Available on: {movie.platform}</p>
+            </div>
           </div>
         ))}
       </div>
