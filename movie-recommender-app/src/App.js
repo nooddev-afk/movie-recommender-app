@@ -86,7 +86,6 @@ export default function MovieRecommendationApp() {
           <option value="">Select Mood</option>
           {moods.map(m => <option key={m} value={m}>{m}</option>)}
         </select>
-
         <select onChange={e => setSelectedPlatform(e.target.value)} className="p-3 bg-zinc-900 text-white rounded border border-zinc-700">
           <option value="">Select Platform</option>
           {platforms.map(p => <option key={p} value={p}>{p}</option>)}
