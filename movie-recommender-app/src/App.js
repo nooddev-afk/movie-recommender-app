@@ -74,7 +74,7 @@ export default function MovieRecommendationApp() {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans px-4 py-6">
-      <h1 className="text-4xl font-extrabold text-red-600 mb-10 text-center">What Should I Watch?</h1>
+      <h1 className="text-4xl font-extrabold text-red-600 mb-10 text-center">LALALALAL bskd</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-4xl mx-auto">
         <select onChange={e => setSelectedGenre(e.target.value)} className="p-3 bg-zinc-900 text-white rounded border border-zinc-700">
