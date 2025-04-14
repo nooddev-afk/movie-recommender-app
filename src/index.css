@@ -1,4 +1,6 @@
+@import "@fontsource/inter";
+@import "@fontsource/dm-serif-display";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
