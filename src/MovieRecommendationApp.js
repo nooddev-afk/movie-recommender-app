@@ -88,9 +88,14 @@ export default function MovieRecommendationApp() {
             }
           });
           const path = tmdbResponse.data.poster_path;
-          posters[movie.id] = path ? `https://image.tmdb.org/t/p/w500${path}` : 'https://via.placeholder.com/300x450?text=No+Image';
+          posters[movie.id] = path
+            ? `https://image.tmdb.org/t/p/w500${path}`
+            : 'https://via.placeholder.com/300x450?text=No+Image';
         } catch (err) {
-          console.error(`🖼️ TMDB Poster fetch failed for ${movie.title} (TMDB ID: ${tmdbId}, Country: ${selectedCountry})`, err);
+          console.error(
+            `🖼️ TMDB Poster fetch failed for ${movie.title} (TMDB ID: ${tmdbId}, Country: ${selectedCountry})`,
+            err
+          );
           posters[movie.id] = 'https://via.placeholder.com/300x450?text=No+Image';
         }
       }));
@@ -150,7 +155,13 @@ export default function MovieRecommendationApp() {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white px-4 py-6 font-body relative">
+    // 1) Make the outer container relative and ensure min-h-screen
+    <div className="relative min-h-screen bg-black text-white font-body">
+      {/* 
+        2) These top links and country code are absolutely positioned. 
+           They won’t overlap the heading if we give the main content 
+           enough top padding (see step 4 below). 
+      */}
       <div className="absolute top-6 left-6 flex items-center space-x-4">
         <Link
           to="/trending-movies/shows-in-2025"
@@ -170,49 +181,94 @@ export default function MovieRecommendationApp() {
         {selectedCountry?.toUpperCase()}
       </div>
 
-      <h1 className="text-4xl md:text-5xl font-heading text-center mb-10 leading-tight tracking-tight">What Should I Watch?</h1>
+      {/* 
+        3) Main content container 
+           Using pt-20 to push it below the absolute items, 
+           and pb-24 so the fixed "Get Recommendations" button 
+           doesn’t overlap movies. 
+      */}
+      <div className="pt-20 pb-24 px-4">
 
-      <div className="space-y-10 max-w-5xl mx-auto mb-20">
-        <div>
-          <h3 className="text-zinc-400 text-xs md:text-sm uppercase font-medium mb-3 tracking-wide text-center md:text-left">Select Genre</h3>
-          <PillSelector options={genres} selected={selectedGenre} onSelect={setSelectedGenre} />
-        </div>
-        <div>
-          <h3 className="text-zinc-400 text-xs md:text-sm uppercase font-medium mb-3 tracking-wide text-center md:text-left">Select Platform</h3>
-          <PillSelector options={platforms} selected={selectedPlatform} onSelect={setSelectedPlatform} />
-        </div>
-        <div>
-          <h3 className="text-zinc-400 text-xs md:text-sm uppercase font-medium mb-3 tracking-wide text-center md:text-left">Sort By</h3>
-          <PillSelector options={sortOptions} selected={selectedSort} onSelect={setSelectedSort} />
-        </div>
+        <h1 className="text-4xl md:text-5xl font-heading text-center mb-10 leading-tight tracking-tight">
+          What Should I Watch?
+        </h1>
 
-        <div className="fixed bottom-4 left-0 right-0 z-10 flex justify-center md:static">
-          <button
-            onClick={fetchMovies}
-            className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 px-10 py-3 rounded-xl shadow-xl text-white font-semibold text-lg transition"
-          >
-            {loading ? 'Loading...' : 'Get Recommendations'}
-          </button>
-        </div>
-      </div>
-
-      {movies.length > 0 && <div className="border-t border-zinc-700 mb-6 max-w-5xl mx-auto"></div>}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {movies.map((movie, index) => (
-          <div key={index} className="bg-zinc-900 border border-zinc-700 rounded-2xl overflow-hidden shadow-md">
-            <img
-              src={getPosterURL(movie)}
-              alt={movie.title || movie.originalTitle || 'Untitled'}
-              className="w-full h-[400px] object-cover"
+        <div className="space-y-10 max-w-5xl mx-auto mb-20">
+          <div>
+            <h3 className="text-zinc-400 text-xs md:text-sm uppercase font-medium mb-3 tracking-wide text-center md:text-left">
+              Select Genre
+            </h3>
+            <PillSelector
+              options={genres}
+              selected={selectedGenre}
+              onSelect={setSelectedGenre}
             />
-            <div className="p-5">
-              <h2 className="text-lg font-heading text-white mb-1 leading-snug tracking-tight">{movie.title || movie.originalTitle}</h2>
-              <p className="text-sm text-zinc-400 mb-2 leading-relaxed line-clamp-4">{movie.overview?.slice(0, 150) || 'No overview available.'}...</p>
-              <p className="text-xs text-yellow-400 font-medium">⭐ IMDB: {getIMDBRating(movie)}</p>
-            </div>
           </div>
-        ))}
+          <div>
+            <h3 className="text-zinc-400 text-xs md:text-sm uppercase font-medium mb-3 tracking-wide text-center md:text-left">
+              Select Platform
+            </h3>
+            <PillSelector
+              options={platforms}
+              selected={selectedPlatform}
+              onSelect={setSelectedPlatform}
+            />
+          </div>
+          <div>
+            <h3 className="text-zinc-400 text-xs md:text-sm uppercase font-medium mb-3 tracking-wide text-center md:text-left">
+              Sort By
+            </h3>
+            <PillSelector
+              options={sortOptions}
+              selected={selectedSort}
+              onSelect={setSelectedSort}
+            />
+          </div>
+
+          {/* 
+            4) The "Get Recommendations" button is fixed on mobile 
+               (bottom-4 left-0 right-0), then md:static for larger screens. 
+               We add "z-10" to ensure it sits above other elements. 
+          */}
+          <div className="fixed bottom-4 left-0 right-0 z-10 flex justify-center md:static">
+            <button
+              onClick={fetchMovies}
+              className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 px-10 py-3 rounded-xl shadow-xl text-white font-semibold text-lg transition"
+            >
+              {loading ? 'Loading...' : 'Get Recommendations'}
+            </button>
+          </div>
+        </div>
+
+        {movies.length > 0 && (
+          <div className="border-t border-zinc-700 mb-6 max-w-5xl mx-auto"></div>
+        )}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {movies.map((movie, index) => (
+            <div
+              key={index}
+              className="bg-zinc-900 border border-zinc-700 rounded-2xl overflow-hidden shadow-md"
+            >
+              <img
+                src={getPosterURL(movie)}
+                alt={movie.title || movie.originalTitle || 'Untitled'}
+                className="w-full h-[400px] object-cover"
+              />
+              <div className="p-5">
+                <h2 className="text-lg font-heading text-white mb-1 leading-snug tracking-tight">
+                  {movie.title || movie.originalTitle}
+                </h2>
+                <p className="text-sm text-zinc-400 mb-2 leading-relaxed line-clamp-4">
+                  {movie.overview?.slice(0, 150) || 'No overview available.'}...
+                </p>
+                <p className="text-xs text-yellow-400 font-medium">
+                  ⭐ IMDB: {getIMDBRating(movie)}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
