@@ -4,6 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MovieRecommendationApp from './MovieRecommendationApp';
 import AboutPage from './AboutPage'; // adjust path if needed
 import TrendingWidgetPage from './TrendingWidgetPage';
+import WeekendWatchPage from './WeekendWatchPage';
+import NewMoviesPage from './NewMoviesPage';
+import WhatToWatchPage from './WhatToWatchPage';
+import NewTVShowsPage from './NewTVShowsPage';
+import Footer from './components/Footer'; // if not already added
+
 
 export default function App() {
   return (
@@ -12,7 +18,14 @@ export default function App() {
         <Route path="/" element={<MovieRecommendationApp />} />
         <Route path="/trending-movies/shows-in-2025" element={<TrendingWidgetPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/what-to-watch-this-weekend" element={<WeekendWatchPage />} />
+<Route path="/new-movies" element={<NewMoviesPage />} />
+<Route path="/what-to-watch" element={<WhatToWatchPage />} />
+<Route path="/new-tv-shows" element={<NewTVShowsPage />} />
+
       </Routes>
+      <Footer />
+      
     </Router>
   );
 }
