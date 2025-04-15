@@ -3,8 +3,6 @@ import axios from 'axios';
 import './index.css';
 import { Link } from 'react-router-dom';
 
-
-
 export default function MovieRecommendationApp() {
   const [selectedGenre, setSelectedGenre] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -153,18 +151,24 @@ export default function MovieRecommendationApp() {
 
   return (
     <div className="min-h-screen bg-black text-white px-4 py-6 font-body relative">
+      <div className="absolute top-6 left-6 flex items-center space-x-4">
+        <Link
+          to="/trending-movies/shows-in-2025"
+          className="bg-zinc-800 hover:bg-zinc-700 text-white text-xs px-4 py-2 rounded-full border border-zinc-600 transition"
+        >
+          🔥 View Trending
+        </Link>
+        <a
+          href="/about"
+          className="text-xs text-zinc-400 hover:text-pink-400 underline transition"
+        >
+          About Us
+        </a>
+      </div>
+
       <div className="absolute top-6 right-6 text-xs text-zinc-400 uppercase font-semibold">
         {selectedCountry?.toUpperCase()}
       </div>
-      <div className="absolute top-6 left-6">
-  <Link
-    to="/trending-movies/shows-in-2025"
-    className="bg-zinc-800 hover:bg-zinc-700 text-white text-xs px-4 py-2 rounded-full border border-zinc-600 transition"
-  >
-    🔥 View Trending
-  </Link>
-</div>
-
 
       <h1 className="text-4xl md:text-5xl font-heading text-center mb-10 leading-tight tracking-tight">What Should I Watch?</h1>
 
