@@ -9,6 +9,8 @@ import NewMoviesPage from './NewMoviesPage';
 import WhatToWatchPage from './WhatToWatchPage';
 import NewTVShowsPage from './NewTVShowsPage';
 import Footer from './components/Footer'; // if not already added
+import Contact from './Contact';
+import PrivacyPolicy from './PrivacyPolicy';
 
 
 export default function App() {
@@ -22,6 +24,8 @@ export default function App() {
 <Route path="/new-movies" element={<NewMoviesPage />} />
 <Route path="/what-to-watch" element={<WhatToWatchPage />} />
 <Route path="/new-tv-shows" element={<NewTVShowsPage />} />
+<Route path="/privacy-policy" element={<PrivacyPolicy />} />
+<Route path="/contact" element={<Contact />} />
 
       </Routes>
       <Footer />
