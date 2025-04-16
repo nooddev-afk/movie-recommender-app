@@ -14,7 +14,7 @@ import NewTVShowsPage from './pages/NewTVShowsPage';
 import AboutPage from './pages/AboutPage';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
-import WeekendWatchApril2024 from './pages/blog/WeekendWatchApril2024';
+import WeekendWatchApril2025 from './pages/blog/WeekendWatchApril2025';
 import BlogHome from './pages/BlogHome';
 import NewMoviesApril2025 from './pages/blog/NewMoviesApril2025';
 import NetflixSecretApril2025 from './pages/blog/NetflixSecretApril2025';
@@ -38,8 +38,8 @@ export default function App() {
         <Route path="/new-movies" element={<NewMoviesPage />} />
         <Route path="/what-to-watch" element={<WhatToWatchPage />} />
         <Route path="/new-tv-shows" element={<NewTVShowsPage />} />
-        <Route path="/blog/weekend-watch-april-2024" element={<WeekendWatchApril2024 />} />
-        <Route path="/blog/new-movies-april-2024" element={<NewMoviesApril2025 />} />
+        <Route path="/blog/weekend-watch-april-2025" element={<WeekendWatchApril2025 />} />
+        <Route path="/blog/new-movies-april-2025" element={<NewMoviesApril2025 />} />
         <Route path="/blog/netflix-secret-april-2025" element={<NetflixSecretApril2025 />} />
         
         <Route path="/blog" element={<BlogHome />} />

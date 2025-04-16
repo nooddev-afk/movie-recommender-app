@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 const blogPosts = [
   {
     title: 'What to Watch This Weekend (April 19–21)',
-    slug: 'weekend-watch-april-2024',
+    slug: 'weekend-watch-april-2025',
     description: 'Your weekend streaming guide — Netflix, Prime & hidden gems.',
     image: 'https://image.tmdb.org/t/p/w500/ctMserH8g2SeOAnCw5gFjdQF8mo.jpg',
 
   },
   {
     title: 'Top 5 New Movies You Can’t Miss This Week (April 22–28)',
-    slug: 'new-movies-april-2024',
+    slug: 'new-movies-april-2025',
     description: 'Fresh releases across Netflix, Prime, and Apple TV — handpicked for movie buffs.',
     image: 'https://image.tmdb.org/t/p/w500/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg',
   },
