@@ -18,7 +18,7 @@ import WeekendWatchApril2025 from './pages/blog/WeekendWatchApril2025';
 import BlogHome from './pages/BlogHome';
 import NewMoviesApril2025 from './pages/blog/NewMoviesApril2025';
 import NetflixSecretApril2025 from './pages/blog/NetflixSecretApril2025';
-
+import NoraAunorTribute from './pages/blog/NoraAunorTribute';
 
 
 // BlogHome route will be added later
@@ -41,6 +41,7 @@ export default function App() {
         <Route path="/blog/weekend-watch-april-2025" element={<WeekendWatchApril2025 />} />
         <Route path="/blog/new-movies-april-2025" element={<NewMoviesApril2025 />} />
         <Route path="/blog/netflix-secret-april-2025" element={<NetflixSecretApril2025 />} />
+        <Route path="/blog/remembering-nora-aunor-tribute" element={<NoraAunorTribute />} />
         
         <Route path="/blog" element={<BlogHome />} />
 

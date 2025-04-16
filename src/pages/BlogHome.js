@@ -17,6 +17,13 @@ const blogPosts = [
     image: 'https://image.tmdb.org/t/p/w500/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg',
   },
   {
+    title: 'Remembering Nora Aunor: A Tribute to the Philippine Cinema Superstar',
+    slug: 'remembering-nora-aunor-tribute',
+    description: 'Explore the latest news and a heartfelt tribute to Nora Aunor, the legendary actress known as the Superstar of Philippine cinema. Discover her most iconic films and celebrate her incredible legacy.',
+    image: 'https://image.tmdb.org/t/p/original/tnstkNB2Um7xlaHAhZoweWhnfez.jpg',
+
+  },
+  {
     title: 'Netflix Secret: What to Watch When Nothing Looks Good (April 2025)',
     slug: 'netflix-secret-april-2025',
     description: 'Feeling stuck on Netflix? This April guide helps you break decision paralysis and stream smart.',
