@@ -4,4 +4,20 @@
     <loc>https://www.themoviesfinder.com/</loc>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://www.themoviesfinder.com/what-to-watch-this-weekend</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.themoviesfinder.com/new-movies-to-stream</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.themoviesfinder.com/what-to-watch</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.themoviesfinder.com/new-tv-shows</loc>
+    <priority>0.9</priority>
+  </url>
 </urlset>
