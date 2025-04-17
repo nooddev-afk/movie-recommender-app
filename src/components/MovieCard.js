@@ -2,6 +2,7 @@
 import React from 'react';
 import { getPosterURL, getIMDBRating } from '../utils/movieUtils';
 
+
 const MovieCard = ({ movie }) => {
   return (
     <div className="bg-zinc-900 border border-zinc-700 rounded-2xl overflow-hidden shadow-md">
