@@ -113,6 +113,92 @@ export default function MovieRecommendationApp() {
     setLoading(false);
   }, [selectedGenre, selectedCountry, selectedPlatform, selectedSort]);
 
+  const ContentBlock = () => (
+    <div className="text-white text-sm md:text-base leading-relaxed space-y-4 max-w-screen-md mx-auto px-4 md:px-0 py-6">
+      <p>
+        <strong>
+          I didn’t build this because I’m a developer. I built this because I
+          was tired of wasting 40 minutes every night just trying to decide what
+          to watch.
+        </strong>{" "}
+        You know the drill — open Netflix, scroll for a bit, close it. Open
+        Prime Video. Still nothing. It became more frustrating than fun. So I
+        made this. For you. For me. For anyone stuck in decision paralysis every
+        night.
+      </p>
+
+      <p>
+        <strong>MoviesFinder</strong> helps you instantly discover{" "}
+        <strong>new movies to stream</strong>,{" "}
+        <strong>new movies streaming now</strong>,{" "}
+        <strong>what to watch this weekend</strong>, and even{" "}
+        <strong>random movie generator</strong> picks when you’re feeling
+        indecisive. Whether it’s <strong>best shows on Apple TV</strong> or{" "}
+        <strong>best movies on Apple TV</strong>, we keep things fresh so you’re
+        never bored again.
+      </p>
+
+      <p>
+        We update the platform every week with <strong>new TV shows</strong>,{" "}
+        <strong>best Apple TV shows</strong>,{" "}
+        <strong>new streaming this weekend</strong>, and{" "}
+        <strong>new movies to stream this weekend</strong> — so if you’re
+        wondering <strong>what to stream this weekend</strong>, you’re in the
+        right place.
+      </p>
+
+      <p>
+        <strong>📱 On mobile?</strong> Tap the ☰ button on the top-right corner
+        to open the menu. Inside, you’ll find a{" "}
+        <strong>Trending section</strong> — it shows you exactly{" "}
+        <strong>what to watch this weekend</strong> without the guesswork.
+      </p>
+
+      <p>
+        <strong>🎮 Try the “Guess the Movie” game too</strong> — we’ll blur a
+        poster, give you clues, and let you try to guess. It’s like a movie
+        night mini-game. Some people play it just to discover{" "}
+        <strong>new movies to stream</strong>.
+      </p>
+
+      <h2 className="text-lg font-semibold pt-4">⚡ How It Works</h2>
+      <ul className="list-disc list-inside space-y-2">
+        <li>
+          <strong>Pick your vibe:</strong> Choose a genre (action, comedy,
+          thriller, drama, horror, or anything else).
+        </li>
+        <li>
+          <strong>Select your platform:</strong> Netflix, Prime, Hulu, Disney+,
+          Apple TV — or leave it open for all.
+        </li>
+        <li>
+          <strong>Tap “Get Recommendations”:</strong> We fetch the latest,
+          region-matched, platform-available stuff.
+        </li>
+        <li>
+          <strong>Scroll the picks:</strong> These are curated for mood,
+          availability, and what's new.
+        </li>
+        <li>
+          <strong>Click to stream:</strong> Done. Watch. Chill. Repeat.
+        </li>
+      </ul>
+
+      <p>
+        From <strong>new movies streaming now</strong> to{" "}
+        <strong>new movies 2025 streaming</strong> and{" "}
+        <strong>new release movies streaming</strong>, we’ve got it all in one
+        place. This isn’t just another list — it’s a shortcut to the best thing
+        to watch tonight.
+      </p>
+
+      <p className="font-semibold">
+        🎬 Stop scrolling. Start watching. Your next favorite thing is literally
+        one tap away.
+      </p>
+    </div>
+  );
+
   return (
     <div
       ref={topRef}
@@ -191,6 +277,8 @@ export default function MovieRecommendationApp() {
               />
             </div>
           )}
+
+          <ContentBlock />
         </div>
       </div>
     </div>
