@@ -8,3 +8,6 @@
 body {
   @apply bg-black text-white;
 }
+html {
+  touch-action: manipulation;
+}
